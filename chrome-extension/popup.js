@@ -6,18 +6,23 @@ const hardCodedStubsAreFun = [
 
 var queryResults = null;
 
-function getQueryResults(query) {
+async function getQueryResults(query) {
 	// Call for api.
 	// async: false
+
+	// ****** STUB *******
 	queryResults = hardCodedStubsAreFun;
+	// ****** STUB *******
+
 	queryResults.sort((a, b) => b.hits - a.hits);
 }
 
 function searchQuery(query) {
-	alert("Searching for " + query);
-	
+	$("wtfii-button").addClass("is-loading");
+	// Get query results with ajax (async: false)
 	getQueryResults(query);
 	let html = [];
+	html.push("<tbody>");
 	html.push(	"<tr>",
 					"<th>",
 						"URL",
@@ -29,12 +34,11 @@ function searchQuery(query) {
 	);
 
 	for (let i = 0; i < queryResults.length; i++) {
-		const element = queryResults[i];
-		let hits = element.hits;
-		let url = "<a id='url_" + i + "'>" + element.url + "</a>";
+		let hits = queryResults[i].hits;
+		let link = "<a id='url_" + i + "'>" + queryResults[i].url + "</a>";
 		html.push(	"<tr>",
 						"<td>",
-							url,
+							link,
 						"</td>",
 						"<td>",
 							hits,
@@ -43,7 +47,11 @@ function searchQuery(query) {
 		);
 	};
 
-	$("#results").append(html.join(""));
+	html.push("</tbody>");
+
+	$("#results").hide();
+	$("#results").html(html.join(""));
+	$("#results").fadeIn("slow");
 
 	for (let i = 0; i < queryResults.length; i++) {
 		$("#url_" + i).on("click", function() {
@@ -55,7 +63,6 @@ function searchQuery(query) {
 }
 
 $("#wtfii-button").on("click", function(event) {
-	$(this).addClass("is-loading");
 	searchQuery($("#wtfii-input").val());
 });
 
