@@ -3,11 +3,16 @@
 	"version": "1.0",
 	"description": "A simple search engine for sites with no search engine",
 	"permissions": [
+		"storage",
 		"activeTab",
 		"tabs",
 		"http://*/*",
 		"https://*/*"
 	],
+	"options_ui": {
+		"page": "options.html",
+		"open_in_tab": false
+	},
 	"browser_action": {
 		"default_popup": "popup.html",
 		"default_icon": {
