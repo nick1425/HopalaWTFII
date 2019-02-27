@@ -5,17 +5,30 @@ const hardCodedStubsAreFun = [
 ]
 
 var queryResults = null;
+var getQueryResults;
 
-async function getQueryResults(query) {
-	// Call for api.
-	// async: false
+chrome.storage.local.get('clientWebCrawling', function(data) {
+	if (data.clientWebCrawling) {
+		getQueryResults = (query) => {
+			alert("Web-crawling on the client");
+			// ****** STUB *******
+			queryResults = hardCodedStubsAreFun;
+			// ****** STUB *******
 
-	// ****** STUB *******
-	queryResults = hardCodedStubsAreFun;
-	// ****** STUB *******
+			queryResults.sort((a, b) => b.hits - a.hits);
+		}
+	} else {
+		getQueryResults = (query) => {
+			alert("Web-crawling on the server");
 
-	queryResults.sort((a, b) => b.hits - a.hits);
-}
+			// ****** STUB *******
+			queryResults = hardCodedStubsAreFun;
+			// ****** STUB *******
+
+			queryResults.sort((a, b) => b.hits - a.hits);
+		}
+	}
+});
 
 function searchQuery(query) {
 	$("wtfii-button").addClass("is-loading");
