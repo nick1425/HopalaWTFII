@@ -1,0 +1,1 @@
+console.log("The url is: " + location.href)
