@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="bulma.min.css">
+		<style>
+			.hovered {
+				background-color: yellow!important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container" style="padding:10px">	
+			<div style="margin-left:25%"><img src='./images/lighthouse128.png' id='myImage'></div>
+			<div class="slidecontainer container">
+				<div style="margin-bottom:7px"><span style="margin-left:11%">Fast&nbsp;</span>
+				<input type="range" min="800" max="5000" value="50" class="slider" id="maxTimeout">
+				<span>&nbsp;Accurate</span></div>
+			</div>
+			<input class="input is-info" type="text" placeHolder="Search" id="wtfii-input" autocomplete="off" autofocus />
+			<button class="button is-info" style="width:100%;margin-top:4px" id="wtfii-button">Search</button>
+			<table class="table is-striped" id="results">
+				<tbody>
+				</tbody>
+			</table>
+
+			<script src="jquery-3.3.1.js"></script>
+			<script src="crawl.js"></script>
+			<script src="popup.js"></script>
+		</div>
+  	</body>
+</html>
