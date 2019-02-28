@@ -17,14 +17,13 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
 chrome.storage.local.get('clientWebCrawling', function(data) {
 	if (data.clientWebCrawling) {
 		getQueryResults = (query) => {
-			// alert("Web-crawling on the client");
 			queryResults = crawl(baseURL, query);
 
 			queryResults.sort((a, b) => b.hits - a.hits);
 		}
 	} else {
 		getQueryResults = (query) => {
-			// alert("Web-crawling on the server");
+			alert("Web-crawling on the server");
 
 			// ****** STUB *******
 			queryResults = hardCodedStubsAreFun;
@@ -42,6 +41,9 @@ function searchQuery(query) {
 
 		// Get query results with ajax (async: false)
 		getQueryResults(query);
+		if (queryResults.length == 0) {
+			getQueryResults(query);
+		}
 		
 		let html = [];
 		html.push("<tbody>");
