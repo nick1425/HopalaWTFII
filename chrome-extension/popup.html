@@ -2,6 +2,11 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="bulma.min.css">
+		<style>
+			.hovered {
+				background-color: yellow!important;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="container" style="padding:10px">	
@@ -11,7 +16,7 @@
 				<input type="range" min="800" max="5000" value="50" class="slider" id="maxTimeout">
 				<span>&nbsp;Accurate</span></div>
 			</div>
-			<input class="input is-info" type="text" placeHolder="Search" id="wtfii-input" autofocus/>
+			<input class="input is-info" type="text" placeHolder="Search" id="wtfii-input" autocomplete="off" autofocus />
 			<button class="button is-info" style="width:100%;margin-top:4px" id="wtfii-button">Search</button>
 			<table class="table is-striped" id="results">
 				<tbody>

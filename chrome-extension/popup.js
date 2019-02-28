@@ -81,16 +81,57 @@ function searchQuery(query) {
 			});
 		}
 		
-		$("#wtfii-button").removeClass("is-loading");	
+		$("#wtfii-button").removeClass("is-loading");
+
+		initSelector();
 	}, 10)
+}
+
+
+var curSelectedIndex = null;
+
+function initSelector() {
+	curSelectedIndex = 0;
+	$("#url_" + curSelectedIndex).addClass("hovered");
+
+	keyDownHandler = () => {
+		if (event.keyCode == 13)  { // Return
+			$("#url_" + curSelectedIndex).click();
+			event.preventDefault();
+			return;
+		} else if (event.keyCode == 40) {
+			curSelectedIndex = (curSelectedIndex + 1) % queryResults.length;
+		} else if (event.keyCode == 38) {
+			if (curSelectedIndex == 0) {
+				curSelectedIndex = queryResults.length - 1;
+			} else {
+				curSelectedIndex -= 1;
+			}
+		}
+	
+		$("a").removeClass("hovered");
+		$("#url_" + curSelectedIndex).addClass("hovered");
+	}
 }
 
 $("#wtfii-button").on("click", function(event) {
 	searchQuery($("#wtfii-input").val());
 });
 
+$("#wtfii-input").on("focus", function(event) {
+    keyDownHandler = () => {};
+});
+
 $("#wtfii-input").keyup(function(event) {
     if (event.keyCode === 13) {
         $("#wtfii-button").click();
     }
+});
+
+var keyDownHandler = () => {
+
+}
+
+$(document).keydown(function(event) {
+	keyDownHandler();
 });
