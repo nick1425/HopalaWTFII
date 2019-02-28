@@ -9,6 +9,9 @@ var getQueryResults;
 var baseURL;
 chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
 	baseURL = tabs[0].url;
+	if (baseURL.startsWith("chrome://")) {
+		$("body").html("<h2>Cannot search in chrome:// websites</h2>")
+	}
 });
 
 chrome.storage.local.get('clientWebCrawling', function(data) {

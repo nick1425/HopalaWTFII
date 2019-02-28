@@ -1,4 +1,4 @@
-const MAX_TIMEOUT = 1500; // Time in miliseconds to crawl for
+var MAX_TIMEOUT = 2000; // Time in miliseconds to crawl for
 var startTime;
 var usedURLs;
 var queuedURLs;
@@ -148,3 +148,16 @@ function crawl(baseURL, queryParam) {
 	
 	return output;
 }
+
+$("#maxTimeout").on("change", function(event) {
+	MAX_TIMEOUT = event.target.value;
+	chrome.storage.local.set({
+		maxTimeout: MAX_TIMEOUT,
+	}, ()=>{});
+})
+
+chrome.storage.local.get([
+	'maxTimeout',
+], function(items) {
+	$("#maxTimeout").val(items.maxTimeout || 2000);
+});

@@ -22,6 +22,14 @@
 			"128": "images/lighthouse128.png"
 		}
 	},
+	"commands": {
+		"_execute_browser_action": {
+			"suggested_key": {
+				"windows": "Ctrl+Shift+F",
+				"mac": "Command+Shift+F"
+			}
+		}
+	},
 	"icons": {
 		"16": "images/lighthouse16.png",
 		"32": "images/lighthouse32.png",
